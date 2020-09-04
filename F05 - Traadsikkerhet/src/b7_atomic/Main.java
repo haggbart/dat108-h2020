@@ -6,8 +6,8 @@ public class Main {
 		
 		TellerAtomic teller = new TellerAtomic();
 		
-		Thread telleOppTraad = new TelleOppTraad(teller, 100000);
-		Thread telleNedTraad = new TelleNedTraad(teller, 100000);
+		Thread telleOppTraad = new TelleOppTraad(teller, 100_000);
+		Thread telleNedTraad = new TelleNedTraad(teller, 100_000);
 		
 		telleOppTraad.start();
 		telleNedTraad.start();

@@ -19,6 +19,7 @@ public class Main {
 		Thread thread4 = new Thread(() -> syncList.addAll(Arrays.asList(7, 8, 9, 10, 11, 12)));
 
 		thread1.start(); thread2.start(); thread3.start(); thread4.start();
+		
 		thread1.join();	thread2.join();	thread3.join();	thread4.join();
 		
 		System.out.println("Vanlig ArrayList  : " + list);
