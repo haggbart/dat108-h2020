@@ -8,10 +8,11 @@ public class F06aBoble {
 	private static <T extends Comparable<T>> void sorter(List<T> listen) {
 		for (int i=0; i<listen.size(); i++) {
 			for (int j=1; j<listen.size(); j++) {
-				if (listen.get(j-1).compareTo(listen.get(j)) > 0) { //Kunne bytte denne!?
-					T temp = listen.get(j-1);
-					listen.set(j-1, listen.get(j));
-					listen.set(j, temp);
+				T a = listen.get(j-1);
+				T b = listen.get(j);
+				if (listen.get(j-1).compareTo(listen.get(j)) > 0) {
+					listen.set(j-1, b);
+					listen.set(j, a);
 				}
 			}
 		}
@@ -20,10 +21,11 @@ public class F06aBoble {
 	private static <T extends Comparable<T>> void sorter(List<T> listen, Sammenligner<T> s) {
 		for (int i=0; i<listen.size(); i++) {
 			for (int j=1; j<listen.size(); j++) {
-				if (s.sammenlign(listen.get(j-1), listen.get(j)) > 0) { //Kunne bytte denne!?
-					T temp = listen.get(j-1);
-					listen.set(j-1, listen.get(j));
-					listen.set(j, temp);
+				T a = listen.get(j-1);
+				T b = listen.get(j);
+				if (s.sammenlign(a, b) > 0) {
+					listen.set(j-1, b);
+					listen.set(j, a);
 				}
 			}
 		}
