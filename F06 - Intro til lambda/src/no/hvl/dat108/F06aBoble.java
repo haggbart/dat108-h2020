@@ -10,7 +10,7 @@ public class F06aBoble {
 			for (int j=1; j<listen.size(); j++) {
 				T a = listen.get(j-1);
 				T b = listen.get(j);
-				if (listen.get(j-1).compareTo(listen.get(j)) > 0) {
+				if (a.compareTo(b) > 0) {
 					listen.set(j-1, b);
 					listen.set(j, a);
 				}
