@@ -1,6 +1,6 @@
 package no.hvl.dat108.f07;
 
-public class Eksempel4 {
+public class Eksempel4_dropp {
 	
 	public static void main(String[] args) {
 		
