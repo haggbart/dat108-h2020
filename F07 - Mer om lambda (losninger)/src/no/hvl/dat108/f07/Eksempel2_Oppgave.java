@@ -11,25 +11,11 @@ import java.util.function.Predicate;
 public class Eksempel2_Oppgave {
 	
 	static void printAll(List<Person> listen) {
-		for (Person p : listen) {
-			System.out.println(p);
-		}
+		doConditionally(listen, p -> true, System.out::println);
 	}
 	
-	static void printLastNameStartsWithC(List<Person> listen) {
-		for (Person p : listen) {
-			if (p.getLastName().startsWith("C")) {
-				System.out.println(p);
-			}
-		}
-	}
-	
-	static void printConditionally(List<Person> listen, Predicate<Person> b) {
-		for (Person p : listen) {
-			if (b.test(p)) {
-				System.out.println(p);
-			}
-		}
+	static void printConditionally(List<Person> listen, Predicate<Person> pred) {
+		doConditionally(listen, pred, System.out::println);
 	}
 	
 	static void doConditionally(List<Person> listen, 
