@@ -19,15 +19,24 @@ public class Eksempel3 {
 				new Utvikler("Lise", new HashSet<>(Arrays.asList("Java", "C"))));
 
 		System.out.println("\nEn oversikt over hvilke utviklere som kan Java:");
-		List<Utvikler> deSomKanJava = null;
+		List<Utvikler> deSomKanJava = utviklere.stream()
+				.filter(u -> u.getSpraak().contains("Java"))
+				.collect(Collectors.toList());
 		deSomKanJava.forEach(System.out::println);
 		
 		System.out.println("\nNavnet på en utvikler som kan C#, eller \"INGEN\" om ingen kan C#:");
-		String navnPaaEnSomKanCSharp = null;
+		String navnPaaEnSomKanCSharp = utviklere.stream()
+				.filter(u -> u.getSpraak().contains("C#"))
+				.map(u -> u.getNavn())
+				.findAny().orElse("INGEN");
 		System.out.println(navnPaaEnSomKanCSharp);
 
 		System.out.println("\nEn sortert liste over alle programmeringsspråkene utviklerne kan:");
-		List<String> progSpraak = null;
+		List<String> progSpraak = utviklere.stream()
+				.flatMap(u -> u.getSpraak().stream())
+				.distinct()
+				.sorted()
+				.collect(Collectors.toList());
 		System.out.println(progSpraak);
 
 		System.out.println("\nHvilket språk flest utviklere kan (finner ett av dem):");
