@@ -40,12 +40,26 @@ public class Eksempel3 {
 		System.out.println(progSpraak);
 
 		System.out.println("\nHvilket språk flest utviklere kan (finner ett av dem):");
-		String favorittspraak = null;
+		String favorittspraak = utviklere.stream()
+				.flatMap(u -> u.getSpraak().stream())
+				.collect(Collectors.groupingBy(x -> x, Collectors.counting()))
+				.entrySet().stream()
+				.max((e1, e2) -> e1.getValue().compareTo(e2.getValue()))
+				.orElseThrow(() -> new Exception())
+				.getKey();
 		System.out.println(favorittspraak);
+
 		
 		System.out.println("\nHvilke(t) språk flest utviklere kan hvis det er flere:");
-		Map<String, Long> frekvensMap = null;
-		List<String> popSpraakListe = null;
+		Map<String, Long> frekvensMap = utviklere.stream()
+				.flatMap(u -> u.getSpraak().stream())
+				.collect(Collectors.groupingBy(x->x, Collectors.counting()));
+		Long maksAntall = frekvensMap.values().stream()
+				.max(Long::compareTo).orElse((long) 0);
+		List<String> popSpraakListe = frekvensMap.entrySet().stream()
+				.filter(e -> e.getValue().equals(maksAntall))
+				.map(e -> e.getKey())
+				.collect(Collectors.toList());
 		System.out.println(popSpraakListe);
 	}
 }
