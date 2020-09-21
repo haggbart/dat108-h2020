@@ -29,9 +29,9 @@ public class PrimeServletNew extends HttpServlet {
 
 			String erPrimtallTekst;
 			if (Primes.isPrime(tallet)) {
-				erPrimtallTekst = " er et primtall";
+				erPrimtallTekst = " er et primtall!";
 			} else {
-				erPrimtallTekst = " er ikke et primtall";
+				erPrimtallTekst = " er ikke et primtall!";
 			}
 
 			response.setContentType("text/html");
