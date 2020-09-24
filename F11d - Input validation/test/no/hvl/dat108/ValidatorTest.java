@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import no.hvl.dat108.ValidatorRegExp;
-
 public class ValidatorTest {
 	
 //	private ValidatorSimple validator = new ValidatorSimple();
