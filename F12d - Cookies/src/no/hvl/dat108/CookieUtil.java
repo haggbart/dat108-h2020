@@ -3,8 +3,7 @@ package no.hvl.dat108;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.NoSuchElementException;
-import java.util.stream.Stream;
+import java.util.Arrays;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -26,22 +25,21 @@ public class CookieUtil {
 		}
 	}
 
-	public static String getCookieFromRequest(
-			HttpServletRequest request, String navn) {
+	public static String getCookieFromRequest(HttpServletRequest request, String navn) {
 		String verdi = null;
 		try {
-			verdi = Stream.of(request.getCookies())
-					.filter(c -> c.getName().equals("navn"))
+			verdi = Arrays.stream(request.getCookies())
+					.filter(c -> c.getName().equals(navn))
 					.map(Cookie::getValue)
-					.findAny()
-					.orElseThrow();
-			
+					.findFirst().orElseThrow();
+
 			verdi = URLDecoder.decode(verdi, CHARACTER_ENCODING);
-			
-		} catch(NoSuchElementException e) {
-			// If no cookie in request. From .orElseThrow()
+
+		} catch (NullPointerException e) {
+			// If no cookie in request.
 			// null is returned
-		} catch(UnsupportedEncodingException e) {
+			
+		} catch (UnsupportedEncodingException e) {
 			// Should never happen
 			e.printStackTrace();
 		}

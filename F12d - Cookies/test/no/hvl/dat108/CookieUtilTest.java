@@ -1,6 +1,7 @@
 package no.hvl.dat108;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import javax.servlet.http.Cookie;
 
@@ -18,6 +19,16 @@ class CookieUtilTest {
     public void setup() {
         request = new MockHttpServletRequest();
         response = new MockHttpServletResponse();
+    }
+
+    /*
+     * Denne testen ble lagt til etter timen der jeg prøvde å
+     * bruke streams, men fikk NullPointerException.
+     */
+    @Test
+    public void manglendeCookieSkalGiNull() {
+        String cookie = CookieUtil.getCookieFromRequest(request, "User");
+        assertNull(cookie);
     }
     
     @Test
